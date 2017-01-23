@@ -2,7 +2,7 @@
 // De la documentation ici : https://github.com/IGNF/geoportal-extensions/blob/master/README-leaflet.md 
 
 function go() {
-    map = L.map("map").setView([46.1756788, 6.538962099999935], 7);
+    map = L.map("map").setView([46.1756788, 6.538962099999935], 9);
     
     var lyrOrtho = L.geoportalLayer.WMTS(
         {
