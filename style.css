@@ -7,16 +7,12 @@ h1 {
 	height: 80px;
 }
 
-logo{
+.logo{
 position: absolute;
 right: 30px;
-
-/*top: 15px;
-height: 50px;
-width: 50px;*/
 top: 21px;
-max-height: 80px;
-width: auto;
+height: 80px;
+
 }
 
 #map {
