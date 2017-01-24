@@ -1,9 +1,25 @@
 
 // De la documentation ici : https://github.com/IGNF/geoportal-extensions/blob/master/README-leaflet.md 
+function loadJSON(callback) {   
+
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'stations_ski.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }
+
 
 function go() {
-    map = L.map("map").setView([48.845, 2.424], 5);
+    map = L.map("map").setView([48.845, 2.424], 8);
     
+   
+
     var lyrOrtho = L.geoportalLayer.WMTS(
         {
             layer: "ORTHOIMAGERY.ORTHOPHOTOS",
@@ -11,10 +27,39 @@ function go() {
     );
     map.addLayer(lyrOrtho);
 
+
+loadJSON(function(response) {
+   	var actual_JSON= JSON.parse(response);
+	var list = actual_JSON.features;
+	for(var i=0;i<list.length;i++)
+	{	
+		var lat;
+	        var lon;
+		var station_ski = L.icon({
+   		 iconUrl: 'icon_ski.png',
+                iconSize:     [38, 38], // size of the icon
+    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+                var coordinates = list[i].geometry.coordinates;
+                if(Array.isArray(coordinates[0][1]))
+		{
+		    lat= coordinates[0][0][1];
+		    lon= coordinates[0][0][0];	
+		}
+		
+		else
+		{
+		  lat = coordinates[0][1];
+		  lon = coordinates[0][0];
+		}
+	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+list[i].properties["NOM_PISTE"]+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
+	}
+ });
 }
 
 Gp.Services.getConfig({
-    apiKey : "jhyvi0fgmnuxvfv0zjzorvdn",
+    apiKey : "aaweyz4astflmmyost6f0qv9",
     onSuccess : go
 }) ;
 
