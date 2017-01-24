@@ -16,9 +16,9 @@ function loadJSON(callback) {
 
 
 function go() {
-    map = L.map("map").setView([46.1756788, 6.538962099999935], 7);
+    map = L.map("map").setView([46.1756788, 6.538962099999935], 14);
     
-   
+  	map.setMinZoom(6);
 
     var lyrOrtho = L.geoportalLayer.WMTS(
         {
@@ -46,12 +46,47 @@ loadJSON(function(response) {
 	{	
 		var lat;
 	    var lon;
-		var station_ski = L.icon({
-   		 iconUrl: 'icon_ski.png',
-                iconSize:     [38, 38], // size of the icon
-    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
+		var cat = list[i].properties["CATEGORIE"];
+		if(cat =="R")
+		{
+			var station_ski = L.icon({
+	   		 iconUrl: 'icon_ski_red.png',
+		        iconSize:     [38, 38], // size of the icon
+	    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+		}
+
+		if(cat =="V")
+		{
+			var station_ski = L.icon({
+	   		 iconUrl: 'icon_ski_green.png',
+		        iconSize:     [38, 38], // size of the icon
+	    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+         }
+		
+		if(cat =="B")
+		{
+			var station_ski = L.icon({
+	   		 iconUrl: 'icon_ski_blue.png',
+		        iconSize:     [38, 38], // size of the icon
+	    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+         }
+
+		if(cat =="N")
+		{
+			var station_ski = L.icon({
+	   		 iconUrl: 'icon_ski_black.png',
+		        iconSize:     [38, 38], // size of the icon
+	    		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	   		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+        }
+
                 var coordinates = list[i].geometry.coordinates;
                 if(Array.isArray(coordinates[0][1]))
 		{
@@ -67,7 +102,7 @@ loadJSON(function(response) {
 		
 		var nom = list[i].properties["NOM_PISTE"];
 		if(nom=="") { nom= "inconnu";}
-	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+nom+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
+	        L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+nom+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
 	}
  });
 }
