@@ -1,6 +1,7 @@
 h1 {
 	color:navy;
     text-align: center;
+    padding: 20px;
 }
 #entete{
 	background-image:url("neige.jpg");
@@ -46,9 +47,10 @@ body {
    
 }
 
-p{
+#pied p{
 	color:navy;
 	display:flex;
     align-items: center;
     text-align:center;
+    margin:auto;
 }
