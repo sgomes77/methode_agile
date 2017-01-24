@@ -26,7 +26,18 @@ function go() {
         }
     );
     map.addLayer(lyrOrtho);
+    var lyr = L.geoportalLayer.WMTS(
+        {
+            layer: "ELEVATION.SLOPES.HIGHRES",
+        }
+    );
 
+    lyr.addTo(map); // ou map.addLayer(lyr);
+
+// Création et ajout du LayerSwitcher
+    map.addControl(
+        L.geoportalControl.LayerSwitcher()
+    );
 
 loadJSON(function(response) {
    	var actual_JSON= JSON.parse(response);
