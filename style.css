@@ -2,6 +2,8 @@ h1 {
 	color:navy;
     text-align: center;
     padding: 20px;
+    font-family: "Indie Flower", cursive;
+    font-size: 2.0em; 
 }
 #entete{
 	background-image:url("neige.jpg");
@@ -53,4 +55,5 @@ body {
     align-items: center;
     text-align:center;
     margin:auto;
+    font-family: "Indie Flower", cursive;
 }
