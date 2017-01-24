@@ -16,7 +16,7 @@ function loadJSON(callback) {
 
 
 function go() {
-    map = L.map("map").setView([48.845, 2.424], 8);
+    map = L.map("map").setView([46.1756788, 6.538962099999935], 7);
     
    
 
@@ -59,7 +59,7 @@ loadJSON(function(response) {
 }
 
 Gp.Services.getConfig({
-    apiKey : "aaweyz4astflmmyost6f0qv9",
+    apiKey : "jhyvi0fgmnuxvfv0zjzorvdn",
     onSuccess : go
 }) ;
 
