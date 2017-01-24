@@ -34,7 +34,7 @@ loadJSON(function(response) {
 	for(var i=0;i<list.length;i++)
 	{	
 		var lat;
-	        var lon;
+	    var lon;
 		var station_ski = L.icon({
    		 iconUrl: 'icon_ski.png',
                 iconSize:     [38, 38], // size of the icon
