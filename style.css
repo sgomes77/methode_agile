@@ -10,12 +10,19 @@ h1 {
 	height: 80px;
 }
 
-.logo{
+.logo_savoie{
 position: absolute;
 right: 30px;
 top: 21px;
 height: 80px;
 
+}
+
+.logo_ski{
+	position: absolute;
+	left: 30px;
+	top: 21px;
+	height: 80px;
 }
 
 #map {
