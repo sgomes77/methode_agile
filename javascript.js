@@ -53,7 +53,10 @@ loadJSON(function(response) {
 		  lat = coordinates[0][1];
 		  lon = coordinates[0][0];
 		}
-	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+list[i].properties["NOM_PISTE"]+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
+		
+		var nom = list[i].properties["NOM_PISTE"];
+		if(nom=="") { nom= "inconnu";}
+	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+nom+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
 	}
  });
 }
