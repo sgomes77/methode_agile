@@ -28,7 +28,7 @@ function go() {
     map.addLayer(lyrOrtho);
     var lyr = L.geoportalLayer.WMTS(
         {
-            layer: "ELEVATION.SLOPES.HIGHRES",
+            layer: "ELEVATION.ELEVATIONGRIDCOVERAGE",
         }
     );
 
@@ -45,7 +45,7 @@ loadJSON(function(response) {
 	for(var i=0;i<list.length;i++)
 	{	
 		var lat;
-	        var lon;
+	    var lon;
 		var station_ski = L.icon({
    		 iconUrl: 'icon_ski.png',
                 iconSize:     [38, 38], // size of the icon
@@ -64,7 +64,10 @@ loadJSON(function(response) {
 		  lat = coordinates[0][1];
 		  lon = coordinates[0][0];
 		}
-	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+list[i].properties["NOM_PISTE"]+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
+		
+		var nom = list[i].properties["NOM_PISTE"];
+		if(nom=="") { nom= "inconnu";}
+	L.marker([lat, lon],{icon: station_ski}).addTo(map).bindPopup("Nom:"+nom+"<br/>"+"Alt : "+list[i].properties["ALT_HAUT"]+" m </br>"+"Déniv : "+list[i].properties["DENIVELEE"]+"m");
 	}
  });
 }
