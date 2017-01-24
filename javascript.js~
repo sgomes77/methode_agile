@@ -59,7 +59,7 @@ loadJSON(function(response) {
 }
 
 Gp.Services.getConfig({
-    apiKey : "aaweyz4astflmmyost6f0qv9",
+    apiKey : "jhyvi0fgmnuxvfv0zjzorvdn",
     onSuccess : go
 }) ;
 
